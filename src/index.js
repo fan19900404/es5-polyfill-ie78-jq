@@ -15,27 +15,6 @@
       });
     };
   }
-  if (!ArrayPrototype.every) {
-    ArrayPrototype.every = function(fn, context) {
-      var passed = true;
-      var that = this;
-      if (typeof fn === "function") {
-        for (var k = 0, length = that.length; k < length; k++) {
-          if (passed === false) break;
-          passed = !!fn.call(context, that[k], k, that);
-        }
-      }
-      return passed;
-    };
-  }
-  if (!ArrayPrototype.filter) {
-    ArrayPrototype.filter = function(callback, thisArg) {
-      var that = this;
-      return $.grep(that, function(value, index) {
-        return callback.call(thisArg, value, index, that);
-      });
-    };
-  }
   if (!ArrayPrototype.indexOf) {
     ArrayPrototype.indexOf = function(searchElement, fromIndex) {
       var that = this;
@@ -52,17 +31,24 @@
       });
     };
   }
+  if (!ArrayPrototype.filter) {
+    ArrayPrototype.filter = function(callback, thisArg) {
+      var that = this;
+      return $.grep(that, function(value, index) {
+        return callback.call(thisArg, value, index, that);
+      });
+    };
+  }
+  if (!ArrayPrototype.every) {
+    ArrayPrototype.every = function(fn, context) {
+      var that = this;
+      return that.filter(fn, context).length == that.length;
+    };
+  }
   if (!ArrayPrototype.some) {
     ArrayPrototype.some = function(fn, context) {
-      var passed = false;
       var that = this;
-      if (typeof fn === "function") {
-        for (var k = 0, length = that.length; k < length; k++) {
-          if (passed === true) break;
-          passed = !!fn.call(context, that[k], k, that);
-        }
-      }
-      return passed;
+      return that.filter(fn, context).length > 0;
     };
   }
 
