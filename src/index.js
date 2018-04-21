@@ -38,17 +38,10 @@
   }
   if (!ArrayPrototype.indexOf) {
     ArrayPrototype.indexOf = function(searchElement, fromIndex) {
-      var index = -1;
       var that = this;
       fromIndex = fromIndex * 1 || 0;
-
-      for (var k = 0, length = that.length; k < length; k++) {
-        if (k >= fromIndex && that[k] === searchElement) {
-          index = k;
-          break;
-        }
-      }
-      return index;
+      var result = $(that.slice(fromIndex)).index(searchElement);
+      return result > -1 ? result + fromIndex : result;
     };
   }
   // if (!Array.prototype.lastIndexOf) {
