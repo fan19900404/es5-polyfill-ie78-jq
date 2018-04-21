@@ -1,0 +1,28 @@
+{
+  "name": "es5-polyfill-ie78-jq",
+  "version": "1.0.0",
+  "description": "基于jq的，在ie7/8浏览器环境下，实现的es5方法垫片语法糖",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fan19900404/es5-polyfill-ie78-jq.git"
+  },
+  "keywords": [],
+  "author": "ZF",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fan19900404/es5-polyfill-ie78-jq/issues"
+  },
+  "homepage": "https://github.com/fan19900404/es5-polyfill-ie78-jq#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}
