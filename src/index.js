@@ -10,7 +10,7 @@
   if (!ArrayPrototype.forEach) {
     ArrayPrototype.forEach = function(callback, thisArg) {
       var that = this;
-      $.each(this, function(index, value) {
+      $.each(that, function(index, value) {
         callback.call(thisArg, value, index, that);
       });
     };
@@ -18,10 +18,11 @@
   if (!ArrayPrototype.every) {
     ArrayPrototype.every = function(fn, context) {
       var passed = true;
+      var that = this;
       if (typeof fn === "function") {
-        for (var k = 0, length = this.length; k < length; k++) {
+        for (var k = 0, length = that.length; k < length; k++) {
           if (passed === false) break;
-          passed = !!fn.call(context, this[k], k, this);
+          passed = !!fn.call(context, that[k], k, that);
         }
       }
       return passed;
@@ -30,7 +31,7 @@
   if (!ArrayPrototype.filter) {
     ArrayPrototype.filter = function(callback, thisArg) {
       var that = this;
-      return $.grep(this, function(value, index) {
+      return $.grep(that, function(value, index) {
         return callback.call(thisArg, value, index, that);
       });
     };
@@ -38,10 +39,11 @@
   if (!ArrayPrototype.indexOf) {
     ArrayPrototype.indexOf = function(searchElement, fromIndex) {
       var index = -1;
+      var that = this;
       fromIndex = fromIndex * 1 || 0;
 
-      for (var k = 0, length = this.length; k < length; k++) {
-        if (k >= fromIndex && this[k] === searchElement) {
+      for (var k = 0, length = that.length; k < length; k++) {
+        if (k >= fromIndex && that[k] === searchElement) {
           index = k;
           break;
         }
@@ -83,7 +85,7 @@
   if (!ArrayPrototype.map) {
     ArrayPrototype.map = function(callback, thisArg) {
       var that = this;
-      return $.map(this, function(value, index) {
+      return $.map(that, function(value, index) {
         return callback.call(thisArg, value, index, that);
       });
     };
@@ -162,10 +164,11 @@
   if (!ArrayPrototype.some) {
     ArrayPrototype.some = function(fn, context) {
       var passed = false;
+      var that = this;
       if (typeof fn === "function") {
-        for (var k = 0, length = this.length; k < length; k++) {
+        for (var k = 0, length = that.length; k < length; k++) {
           if (passed === true) break;
-          passed = !!fn.call(context, this[k], k, this);
+          passed = !!fn.call(context, that[k], k, that);
         }
       }
       return passed;
