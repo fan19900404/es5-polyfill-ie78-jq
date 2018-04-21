@@ -31,7 +31,7 @@
     ArrayPrototype.filter = function(callback, thisArg) {
       var that = this;
       return $.grep(this, function(value, index) {
-        callback.call(thisArg, value, index, that);
+        return callback.call(thisArg, value, index, that);
       });
     };
   }

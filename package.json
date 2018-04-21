@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "gulp"
+    "dev": "gulp",
+    "build":"gulp script"
   },
   "repository": {
     "type": "git",
