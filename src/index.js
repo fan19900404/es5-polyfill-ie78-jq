@@ -3,19 +3,20 @@
    * polyfill for Array
    */
 
+  var ArrayPrototype = Array.prototype;
   if (!Array.isArray) {
     Array.isArray = $.isArray;
   }
-  if (!Array.prototype.forEach) {
-    Array.prototype.forEach = function(callback, thisArg) {
+  if (!ArrayPrototype.forEach) {
+    ArrayPrototype.forEach = function(callback, thisArg) {
       var that = this;
       $.each(this, function(index, value) {
         callback.call(thisArg, value, index, that);
       });
     };
   }
-  if (!Array.prototype.every) {
-    Array.prototype.every = function(fn, context) {
+  if (!ArrayPrototype.every) {
+    ArrayPrototype.every = function(fn, context) {
       var passed = true;
       if (typeof fn === "function") {
         for (var k = 0, length = this.length; k < length; k++) {
@@ -26,16 +27,16 @@
       return passed;
     };
   }
-  if (!Array.prototype.filter) {
-    Array.prototype.filter = function(callback, thisArg) {
+  if (!ArrayPrototype.filter) {
+    ArrayPrototype.filter = function(callback, thisArg) {
       var that = this;
       return $.grep(this, function(value, index) {
         callback.call(thisArg, value, index, that);
       });
     };
   }
-  if (!Array.prototype.indexOf) {
-    Array.prototype.indexOf = function(searchElement, fromIndex) {
+  if (!ArrayPrototype.indexOf) {
+    ArrayPrototype.indexOf = function(searchElement, fromIndex) {
       var index = -1;
       fromIndex = fromIndex * 1 || 0;
 
@@ -79,8 +80,8 @@
   //     return -1;
   //   };
   // }
-  if (!Array.prototype.map) {
-    Array.prototype.map = function(callback, thisArg) {
+  if (!ArrayPrototype.map) {
+    ArrayPrototype.map = function(callback, thisArg) {
       var that = this;
       return $.map(this, function(value, index) {
         return callback.call(thisArg, value, index, that);
@@ -158,8 +159,8 @@
   // }
 
   // from https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some
-  if (!Array.prototype.some) {
-    Array.prototype.some = function(fn, context) {
+  if (!ArrayPrototype.some) {
+    ArrayPrototype.some = function(fn, context) {
       var passed = false;
       if (typeof fn === "function") {
         for (var k = 0, length = this.length; k < length; k++) {
