@@ -8,9 +8,12 @@
 
 在考虑到体积一类的问题，最终决定，依赖jq这个库，自己动手写个语法糖，比如
 ```js
- if (!Array.prototype.map) {
-    Array.prototype.map = function(callback) {
-      return $.map(this, callback);
+  if (!Array.prototype.map) {
+    Array.prototype.map = function(callback, thisArg) {
+      var that = this;
+      return $.map(this, function(value, index) {
+        return callback.call(thisArg, value, index, that);
+      });
     };
   }
 ```
