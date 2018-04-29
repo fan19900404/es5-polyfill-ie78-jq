@@ -4,86 +4,74 @@
    */
 
   var ArrayPrototype = Array.prototype;
-  if (!Array.isArray) {
-    Array.isArray = $.isArray;
-  }
-  if (!ArrayPrototype.map) {
-    ArrayPrototype.map = function(callback, thisArg) {
-      var that = this;
-      return $.map(that, function(value, index) {
-        return callback.call(thisArg, value, index, that);
-      });
-    };
-  }
-  if (!ArrayPrototype.forEach) {
-    ArrayPrototype.forEach = function(callback, thisArg) {
-      this.map(callback, thisArg)
-    };
-  }
-  if (!ArrayPrototype.indexOf) {
-    ArrayPrototype.indexOf = function(searchElement, fromIndex) {
-      var that = this;
-      fromIndex = fromIndex * 1 || 0;
-      var result = $(that.slice(fromIndex)).index(searchElement);
-      return result > -1 ? result + fromIndex : result;
-    };
-  }
-  if (!ArrayPrototype.filter) {
-    ArrayPrototype.filter = function(callback, thisArg) {
-      var that = this;
-      return $.grep(that, function(value, index) {
-        return callback.call(thisArg, value, index, that);
-      });
-    };
-  }
-  if (!ArrayPrototype.every) {
-    ArrayPrototype.every = function(fn, context) {
-      var that = this;
-      return that.filter(fn, context).length == that.length;
-    };
-  }
-  if (!ArrayPrototype.some) {
-    ArrayPrototype.some = function(fn, context) {
-      return this.filter(fn, context).length > 0;
-    };
-  }
+
+  Array.isArray = $.isArray;
+
+  ArrayPrototype.map = function(callback, thisArg) {
+    var that = this;
+    return $.map(that, function(value, index) {
+      return callback.call(thisArg, value, index, that);
+    });
+  };
+
+  ArrayPrototype.forEach = function(callback, thisArg) {
+    this.map(callback, thisArg);
+  };
+
+  ArrayPrototype.indexOf = function(searchElement, fromIndex) {
+    var that = this;
+    fromIndex = fromIndex * 1 || 0;
+    var result = $(that.slice(fromIndex)).index(searchElement);
+    return result > -1 ? result + fromIndex : result;
+  };
+
+  ArrayPrototype.filter = function(callback, thisArg) {
+    var that = this;
+    return $.grep(that, function(value, index) {
+      return callback.call(thisArg, value, index, that);
+    });
+  };
+
+  ArrayPrototype.every = function(fn, context) {
+    var that = this;
+    return that.filter(fn, context).length == that.length;
+  };
+
+  ArrayPrototype.some = function(fn, context) {
+    return this.filter(fn, context).length > 0;
+  };
 
   /**
    * polyfill for String
    */
 
-  if (!String.prototype.trim) {
-    String.prototype.trim = function() {
-      return $.trim(this);
-    };
-  }
+  String.prototype.trim = function() {
+    return $.trim(this);
+  };
 
   /**
    * polyfill for Date
    */
 
-  if (!Date.now) {
-    Date.now = function() {
-      return +new Date();
-    };
-  }
+  Date.now = function() {
+    return +new Date();
+  };
 
   /**
    * polyfill for Object
    */
-  if (!Object.keys) {
-    Object.keys = function(o) {
-      if (o !== Object(o)) {
-        throw new TypeError("Object.keys called on a non-object");
+
+  Object.keys = function(o) {
+    if (o !== Object(o)) {
+      throw new TypeError("Object.keys called on a non-object");
+    }
+    var k = [],
+      p;
+    for (p in o) {
+      if (Object.prototype.hasOwnProperty.call(o, p)) {
+        k.push(p);
       }
-      var k = [],
-        p;
-      for (p in o) {
-        if (Object.prototype.hasOwnProperty.call(o, p)) {
-          k.push(p);
-        }
-      }
-      return k;
-    };
-  }
+    }
+    return k;
+  };
 })(jQuery);

@@ -35,6 +35,19 @@
 + Object
   - Object.keys
 
+## 引入的方法
+```html
+<head>
+  <script src="../lib/jquery.min.js"></script>
+  <!--[if lte IE 8]>
+  <script src="../dist/es5-polyfill-ie78-jq.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+</body>
+```
+> 请先引入`jquery`
+
 ## 注意
 - 本兼容方案，是以在IE7/8环境中正常可用为标准，不关心是否和ES5完全一致，比如错误提示一致。
 - 本兼容方案出于体积考虑，只放入常用方法。
