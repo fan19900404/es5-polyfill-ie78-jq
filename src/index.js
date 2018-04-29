@@ -7,12 +7,17 @@
   if (!Array.isArray) {
     Array.isArray = $.isArray;
   }
+  if (!ArrayPrototype.map) {
+    ArrayPrototype.map = function(callback, thisArg) {
+      var that = this;
+      return $.map(that, function(value, index) {
+        return callback.call(thisArg, value, index, that);
+      });
+    };
+  }
   if (!ArrayPrototype.forEach) {
     ArrayPrototype.forEach = function(callback, thisArg) {
-      var that = this;
-      $.each(that, function(index, value) {
-        callback.call(thisArg, value, index, that);
-      });
+      this.map(callback, thisArg)
     };
   }
   if (!ArrayPrototype.indexOf) {
@@ -21,14 +26,6 @@
       fromIndex = fromIndex * 1 || 0;
       var result = $(that.slice(fromIndex)).index(searchElement);
       return result > -1 ? result + fromIndex : result;
-    };
-  }
-  if (!ArrayPrototype.map) {
-    ArrayPrototype.map = function(callback, thisArg) {
-      var that = this;
-      return $.map(that, function(value, index) {
-        return callback.call(thisArg, value, index, that);
-      });
     };
   }
   if (!ArrayPrototype.filter) {
