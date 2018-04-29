@@ -44,8 +44,7 @@
   }
   if (!ArrayPrototype.some) {
     ArrayPrototype.some = function(fn, context) {
-      var that = this;
-      return that.filter(fn, context).length > 0;
+      return this.filter(fn, context).length > 0;
     };
   }
 
