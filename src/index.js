@@ -32,12 +32,12 @@
     });
   };
 
-  ArrayPrototype.every = function(fn, context) {
+  ArrayPrototype.every = function(callback, thisArg) {
     var that = this;
     return that.filter(fn, context).length == that.length;
   };
 
-  ArrayPrototype.some = function(fn, context) {
+  ArrayPrototype.some = function(callback, thisArg) {
     return this.filter(fn, context).length > 0;
   };
 
