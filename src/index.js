@@ -34,11 +34,11 @@
 
   ArrayPrototype.every = function(callback, thisArg) {
     var that = this;
-    return that.filter(fn, context).length == that.length;
+    return that.filter(callback, thisArg).length == that.length;
   };
 
   ArrayPrototype.some = function(callback, thisArg) {
-    return this.filter(fn, context).length > 0;
+    return this.filter(callback, thisArg).length > 0;
   };
 
   /**
