@@ -6,8 +6,8 @@ var rename = require("gulp-rename");
 // 压缩 js 文件
 // 在命令行使用 gulp script 启动此任务
 gulp.task("script", function() {
-  // 1. 找到文件
-  gulp
+  return gulp
+    // 1. 找到文件
     .src("src/index.js")
     // 2. 压缩文件
     .pipe(uglify())
@@ -16,8 +16,8 @@ gulp.task("script", function() {
     .pipe(gulp.dest("dist"));
 });
 
-gulp.task("auto", function() {
-  gulp.watch("src/index.js", ["script"]);
+gulp.task("auto", function () {
+  gulp.watch("src/index.js", gulp.series("script"));
 });
 
-gulp.task("default", ["auto"]);
+gulp.task("default", gulp.parallel("auto"));
