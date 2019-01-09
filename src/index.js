@@ -61,17 +61,17 @@
    * polyfill for Object
    */
 
-  Object.keys = function(o) {
-    if (o !== Object(o)) {
+  Object.keys = function(obj) {
+    if (obj !== Object(obj)) {
       throw new TypeError("Object.keys called on a non-object");
     }
-    var k = [],
-      p;
-    for (p in o) {
-      if (Object.prototype.hasOwnProperty.call(o, p)) {
-        k.push(p);
+    var keys = [];
+    var prop;
+    for (prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+        keys.push(prop);
       }
     }
-    return k;
+    return keys;
   };
 })(jQuery);
