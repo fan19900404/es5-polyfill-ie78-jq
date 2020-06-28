@@ -54,3 +54,7 @@
 - 本兼容方案依赖jq，请先引入jq，在引入本js。
 - 如无特殊要求，建议引入`es5-shim`的兼容方案。
 - 再次重申，本兼容方案，只适合于使用了jq，并且要兼容IE7/8时，可使用ES5的部分方法。
+
+## 其它
+github由于众所周知原因，特别慢，推荐使用 github.com.cnpmjs.org 代替github，比如本项目，原本
+`https://github.com/fan19900404/es5-polyfill-ie78-jq` 改为 `https://github.com.cnpmjs.org/fan19900404/es5-polyfill-ie78-jq`
